@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const pug = require('./webpack/pug.js');
 const sass = require('./webpack/sass.js');
+const babel = require('./webpack/js.babel');
 
 const PATHS = {
   source: path.join(__dirname, './assets'),
@@ -45,6 +46,7 @@ const common = merge([
   },
   pug(),
   sass(),
+  babel(),
 ]);
 
 module.exports = (env, options) => {
