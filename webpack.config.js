@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pug = require('./webpack/pug.js');
 const sass = require('./webpack/sass.js');
 const babel = require('./webpack/js.babel');
+const uglifyJs = require('./webpack/js.uglify.js');
 
 const PATHS = {
   source: path.join(__dirname, './assets'),
@@ -57,7 +58,6 @@ module.exports = (env, options) => {
     return merge([common]);
   } else {
     common.devtool = false;
-    //return merge([common, uglifyJS()]);
-    return merge([common]);
+    return merge([common, uglifyJS()]);
   }
 };
