@@ -8,6 +8,8 @@ const pug = require('./webpack/pug.js');
 const sass = require('./webpack/sass.js');
 const babel = require('./webpack/js.babel');
 const uglifyJS = require('./webpack/js.uglify.js');
+const images = require('./webpack/images');
+const fonts = require('./webpack/fonts');
 
 const PATHS = {
   source: path.join(__dirname, './assets'),
@@ -45,14 +47,14 @@ const common = merge([
       }),
     ],
   },
-  pug(),
   sass(),
   babel(),
+  images(),
+  fonts(),
+  pug(),
 ]);
 
 module.exports = (env, options) => {
-  console.log(options.mode);
-
   if (options.mode === 'development') {
     common.devtool = 'source-map';
     return merge([common]);
