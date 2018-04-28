@@ -1,4 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
+const mqpacker = require('css-mqpacker');
 
 module.exports = function(env, options) {
   return {
@@ -21,6 +23,20 @@ module.exports = function(env, options) {
               options: {
                 sourceMap: true,
                 minimize: true,
+              },
+            },
+            {
+              loader: 'postcss-loader', // Run post css actions
+              options: {
+                plugins: [
+                  autoprefixer({
+                    browsers: ['ie >= 8', 'last 4 version'],
+                  }),
+                  mqpacker({
+                    sort: true,
+                  }),
+                ],
+                sourceMap: true,
               },
             },
             {
